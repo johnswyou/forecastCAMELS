@@ -1,0 +1,30 @@
+Assumption 1: The following assumes you are on a Windows 10 or 11 machine.
+Assumption 2: CAMELS data set version 1.2
+
+To replicate my data processing steps, follow the instructions below:
+
+1. Ensure your working directory has the data containing folders `daymet` and 
+`usgs_streamflow` taken from the full CAMELS data set folder (you can download the
+full CAMELS data set zip file from https://gdex.ucar.edu/dataset/camels.html).
+
+`daymet` (input features) comes from:
+
+\basin_timeseries_v1p2_metForcing_obsFlow\basin_dataset_public_v1p2\basin_mean_forcing\daymet
+
+`usgs_streamflow` (target) comes from:
+
+\basin_timeseries_v1p2_metForcing_obsFlow\basin_dataset_public_v1p2\usgs_streamflow
+
+2. Remove the following files from `daymet`:
+
+01\01150900_lump_cida_forcing_leap
+03\02081113_lump_cida_forcing_leap
+06\03448942_lump_cida_forcing_leap
+
+We remove the above files because the corresponding usgs_streamflow files for these 3
+gauge id's don't exists in `usgs_streamflow`. NOTE that I used the CAMELS data set version
+1.2. In future versions of CAMELS, this problem may no longer be present.
+
+3. Run process_raw_data.R
+
+4. Run filter_processed_data.R
